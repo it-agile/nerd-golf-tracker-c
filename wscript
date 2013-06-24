@@ -11,6 +11,10 @@ def configure(ctx):
     ctx.load('compiler_cxx waf_unit_test')
 
 def build(bld):
+    assemble_executable(bld)
+    test(bld)
+
+def assemble_executable(bld):
     bld.stlib(
     	source=bld.path.ant_glob('src/*.cc'), 
     	includes='src',
@@ -21,6 +25,7 @@ def build(bld):
     	target=APPNAME,
         use='src')
 
+def test(bld):
     bld.stlib(
         source='contrib/gtest/gtest-all.cc', 
         includes='contrib', 
