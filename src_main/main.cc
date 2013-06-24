@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <string.h>
+
+#include "tracker.h"
 
 int main(int argc, char* argv[]) {
 	char kommando[30];
 	gets(kommando);
-	if (strcmp("Schlage Ball", kommando) == 0)
-		printf("Du hast 1 Schlag.");
+	printf(reagiereAuf(kommando));
 	return 0;
 }

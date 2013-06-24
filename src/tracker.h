@@ -1,0 +1,2 @@
+
+char* reagiereAuf(char* eingabe);
