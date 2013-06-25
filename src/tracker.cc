@@ -6,7 +6,6 @@
 #include "scorecard.h"
 
 
-char* reagiereAuf(char* eingabe) {
-	struct scorecard sc = { 0 };
-	return schlageBall(&sc);
+char* reagiereAuf(char* eingabe, struct scorecard *sc) {
+	return schlageBall(sc);
 }
