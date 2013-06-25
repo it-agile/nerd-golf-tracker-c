@@ -1,2 +1,2 @@
 
-char* reagiereAuf(char* eingabe, struct scorecard *);
+char* reagiereAuf(char const* eingabe, struct scorecard *);
