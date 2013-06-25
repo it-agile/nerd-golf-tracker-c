@@ -1,0 +1,2 @@
+
+void bereiteAuf(char * str);
