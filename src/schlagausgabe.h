@@ -1,0 +1,2 @@
+
+char* schlagzahl(struct scorecard *);

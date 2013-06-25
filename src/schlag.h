@@ -1,0 +1,2 @@
+
+char* schlageBall(struct scorecard *);

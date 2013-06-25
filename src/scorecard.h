@@ -1,0 +1,4 @@
+
+struct scorecard {
+	int schlaege;
+};
