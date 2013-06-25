@@ -4,8 +4,8 @@
 #include "schlagausgabe.h"
 
 TEST(Schlagausgabe, gibtAnzahlSchlaegeAus) {
-	struct scorecard _scorecard = { 1 };
-	char* ausgabe = schlagzahl(&_scorecard);
+	struct scorecard sc = { 1 };
+	char* ausgabe = schlagzahl(&sc);
 
 	char* pos = strstr(ausgabe, "1 Schlag");
 	ASSERT_GE(pos, ausgabe);
