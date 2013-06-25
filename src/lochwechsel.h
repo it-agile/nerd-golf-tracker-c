@@ -1,0 +1,2 @@
+
+char* naechstesLoch(struct scorecard *);
