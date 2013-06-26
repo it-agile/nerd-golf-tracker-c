@@ -1,16 +1,25 @@
 #include "gtest/gtest.h"
 #include "scorecard.h"
 #include "tracker.h"
+#include "befehl.h"
 
-TEST(Tracker, reagiertAufEingabe) {
-	struct scorecard sc = { 0 };
-	ASSERT_STREQ("Du hast 1 Schlag", reagiereAuf("Schlage Ball", &sc));
+char* stubOp(struct scorecard* sc) {
+	return "ausgabe";
 }
+TEST(Tracker, delegiertAnRichtigeOperationWennNurEinBefehlBekannt) {
+	struct befehl befehle[] = {{"kommando", &stubOp}};
+	char* result = reagiereAuf("kommando", befehle, 1, NULL);
+	ASSERT_STREQ("ausgabe", result);
+}
+char* stubOp2(struct scorecard* sc) {
+	return "ausgabe2";
+}
+TEST(Tracker, delegiertAnOperationFuerKommandoWennMehrereBefehleBekannt) {
+	struct befehl befehle[] = {
+			{"kommando1", &stubOp},
+			{"kommando2", &stubOp2}};
 
-TEST(Tracker, reagiertAufNaechstesLoch) {
-	struct scorecard sc = { 0, 0 };
-	char* ausgabe = reagiereAuf("Naechstes Loch", &sc);
+	char* result = reagiereAuf("kommando2", befehle, 2, NULL);
 
-	char* pos = strstr(ausgabe, "1. Loch");
-	ASSERT_GE(pos, ausgabe);
+	ASSERT_STREQ("ausgabe2", result);
 }
