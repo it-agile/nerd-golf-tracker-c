@@ -6,7 +6,7 @@
 
 TEST(Lochwechsel, gibtNeuesLochAus) {
 	struct scorecard sc = { 0, 0 };
-	char* ausgabe = naechstesLoch(&sc);
+	const char* ausgabe = naechstesLoch(&sc);
 
 	ASSERT_TRUE(StrContains(ausgabe, "1. Loch"));
 }

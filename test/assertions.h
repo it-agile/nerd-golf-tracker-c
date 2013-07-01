@@ -1,1 +1,1 @@
-::testing::AssertionResult StrContains(char* haystack, char* needle);
+::testing::AssertionResult StrContains(const char* haystack, const char* needle);
