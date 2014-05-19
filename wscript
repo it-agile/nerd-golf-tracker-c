@@ -1,21 +1,20 @@
 #! /usr/bin/env python
 ## encoding: utf-8
 
-import sys
-
 APPNAME = "nerd-golf-tracker"
 VERSION = "0.1"
 
 def options(opt):
-    opt.load('compiler_c compiler_cxx waf_unit_test')
+    opt.load('compiler_c waf_unit_test')
+    opt.recurse('contrib/gtest')
 
 def configure(ctx):
-    ctx.load('compiler_c compiler_cxx waf_unit_test')
-    configure_gtest(ctx)
+    ctx.load('compiler_c waf_unit_test')
+    ctx.recurse('contrib/gtest')
 
 def build(bld):
     assemble_executable(bld)
-    build_gtest(bld)
+    bld.recurse('contrib/gtest')
     test(bld)
 
 def assemble_executable(bld):
@@ -35,7 +34,7 @@ def test(bld):
         features='test',
         source=bld.path.ant_glob(['test/*.cc']),
         target='unittests',
-        includes='contrib src',
+        includes='contrib/gtest/fused-src src',
         use='gtest src')
 
     from waflib.Tools import waf_unit_test
@@ -43,20 +42,3 @@ def test(bld):
     bld.add_post_fun(waf_unit_test.set_exit_code)
 
 
-def configure_gtest(ctx):
-    if linux():
-        if not ctx.env['LIB_PTHREAD']:
-            ctx.check_cxx(lib='pthread')
-
-def build_gtest(bld):
-    use_flags = []
-    if linux():
-        use_flags += ['PTHREAD']
-    bld.stlib(
-        source='contrib/gtest/gtest-all.cc', 
-        includes='contrib', 
-        use=use_flags,
-        target='gtest')
-
-def linux():
-    return sys.platform == 'linux2'
