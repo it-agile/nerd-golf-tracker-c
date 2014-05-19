@@ -2,7 +2,10 @@
 #include "assertions.h"
 
 #include "scorecard.h"
-#include "lochwechsel.h"
+
+extern "C" {
+    #include "lochwechsel.h"
+}
 
 TEST(Lochwechsel, gibtNeuesLochAus) {
 	struct scorecard sc = { 0, 0 };

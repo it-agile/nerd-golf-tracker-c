@@ -7,10 +7,10 @@ APPNAME = "nerd-golf-tracker"
 VERSION = "0.1"
 
 def options(opt):
-    opt.load('compiler_cxx waf_unit_test')
+    opt.load('compiler_c compiler_cxx waf_unit_test')
 
 def configure(ctx):
-    ctx.load('compiler_cxx waf_unit_test')
+    ctx.load('compiler_c compiler_cxx waf_unit_test')
     configure_gtest(ctx)
 
 def build(bld):
@@ -20,11 +20,11 @@ def build(bld):
 
 def assemble_executable(bld):
     bld.stlib(
-    	source=bld.path.ant_glob('src/*.cc'), 
+    	source=bld.path.ant_glob('src/*.c'), 
     	includes='src',
     	target='src')
     bld.program(
-    	source='src_main/main.cc', 
+    	source='src_main/main.c', 
     	includes='src', 
     	target=APPNAME,
         use='src')

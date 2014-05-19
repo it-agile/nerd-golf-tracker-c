@@ -1,7 +1,10 @@
 #include "gtest/gtest.h"
 
 #include "scorecard.h"
-#include "schlagausgabe.h"
+
+extern "C" {
+    #include "schlagausgabe.h"
+}
 
 TEST(Schlagausgabe, gibtAnzahlSchlaegeAus) {
 	struct scorecard sc = { 1 };

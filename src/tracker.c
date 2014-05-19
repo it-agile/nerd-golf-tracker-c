@@ -1,7 +1,7 @@
 #include <string.h>
 
-#include "tracker.h"
 #include "scorecard.h"
+#include "tracker.h"
 
 #include "schlag.h"
 #include "lochwechsel.h"

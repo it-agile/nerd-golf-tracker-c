@@ -1,6 +1,10 @@
 #include "gtest/gtest.h"
+
 #include "scorecard.h"
-#include "tracker.h"
+
+extern "C" {
+    #include "tracker.h"
+}
 
 TEST(Tracker, reagiertAufEingabe) {
 	struct scorecard sc = { 0 };
