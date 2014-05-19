@@ -8,7 +8,9 @@ def options(opt):
 
 def configure(ctx):
     ctx.load('compiler_cxx')
-    configure_gtest(ctx)
+    if linux():
+        if not ctx.env['LIB_PTHREAD']:
+            ctx.check_cxx(lib='pthread')
 
 def build(bld):
     use_flags = []
@@ -19,11 +21,6 @@ def build(bld):
         includes='fused-src', 
         use=use_flags,
         target='gtest')
-
-def configure_gtest(ctx):
-    if linux():
-        if not ctx.env['LIB_PTHREAD']:
-            ctx.check_cxx(lib='pthread')
 
 def linux():
     return sys.platform == 'linux2'
