@@ -30,6 +30,7 @@ def assemble_executable(bld):
         use='src')
 
 def test(bld):
+    bld.options.all_tests = True
     bld.program(
         features='test',
         source=bld.path.ant_glob(['test/*.cc']),
