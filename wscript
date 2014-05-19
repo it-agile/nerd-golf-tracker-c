@@ -32,7 +32,9 @@ def test(bld):
     bld.options.all_tests = True
     bld.program(
         features='test',
-        source=bld.path.ant_glob(['test/*.cc']),
+        source=bld.path.ant_glob([
+            'contrib/gtest/fused-src/gtest/gtest_main.cc', 
+            'test/*.cc']),
         target='unittests',
         includes='contrib/gtest/fused-src src',
         use='gtest src')
